@@ -3,11 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "replace": "gulp replacePath",
+    "build": "nuxi build && pnpm run replace",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "postinstall": "nuxi prepare",
+    "start": "node .output/server/index.mjs",
+    "start:generate": "npx serve .output/public"
   },
   "devDependencies": {
     "@nuxtjs/i18n": "^8.0.0",
@@ -17,6 +19,8 @@
     "nuxt": "^3.10.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
-    "@types/node": "^18"
+    "@types/node": "^18",
+    "gulp": "^4.0.2",
+    "gulp-replace": "^1.1.4"
   }
 }
