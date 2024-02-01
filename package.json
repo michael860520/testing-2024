@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "replace": "gulp replacePath",
-    "build": "nuxi build && pnpm run replace",
+    "build": "nuxi build && pwd && ls && pnpm run replace",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
     "postinstall": "nuxi prepare",
