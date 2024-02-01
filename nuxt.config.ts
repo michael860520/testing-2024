@@ -10,8 +10,11 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: ''
   },
-  build: {
-    publicPath: 'https://pcs-nuxt3-v2.vercel.app/',
+  // build: {
+  //   publicPath: 'https://pcs-nuxt3-v2.vercel.app/',
+  // },
+  vite: {
+    base: 'https://pcs-nuxt3-v2.vercel.app/',
   },
   i18n: {
     langDir: 'locales',
