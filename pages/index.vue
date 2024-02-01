@@ -4,8 +4,6 @@
 <template>
   <NuxtLayout>
     <Logos />
-    <Suspense>
-    </Suspense>
     <InputEntry />
   </NuxtLayout>
 </template>
