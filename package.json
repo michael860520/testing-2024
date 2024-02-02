@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "replace": "gulp replacePath",
-    "build": "nuxi build",
+    "build": "NUXT_APP_CDN_URL=https://pcs-nuxt3-v2.vercel.app/ nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
     "postinstall": "nuxi prepare",
