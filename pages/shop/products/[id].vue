@@ -26,7 +26,7 @@ const productId = route.params.id
     <div class="mt-4">
       <NuxtLink
         class="text-sm  bg-slate-400 px-4 py-2 rounded-lg"
-        to="/search"
+        to="/shop/search"
       >
         Back
       </NuxtLink>

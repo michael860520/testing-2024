@@ -24,7 +24,7 @@ watch(() => route.query.q, (newQuery) => {
 })
 
 function clearSearch() {
-  router.push('/search')
+  router.push('/shop/search')
 }
 </script>
 

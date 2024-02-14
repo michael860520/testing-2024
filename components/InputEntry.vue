@@ -4,7 +4,7 @@ const searchValue = ref('')
 const router = useRouter()
 function go() {
   if (searchValue.value)
-    router.push({ path: '/search', query: { q: searchValue.value } })
+    router.push({ path: '/shop/search', query: { q: searchValue.value } })
 }
 </script>
 
