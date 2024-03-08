@@ -31,6 +31,6 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/': {redirect: '/shop'},
+    '/': { redirect: '/shop' },
   },
 })
