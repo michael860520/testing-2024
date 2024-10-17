@@ -4,11 +4,11 @@
   "type": "module",
   "scripts": {
     "replace": "gulp replacePath",
-    "build": "NUXT_APP_CDN_URL=https://pcs-nuxt3-v2.vercel.app/ nuxi build",
+    "build": "nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
     "postinstall": "nuxi prepare",
-    "start": "NUXT_APP_CDN_URL=https://pcs-nuxt3-v2.vercel.app/ node .output/server/index.mjs",
+    "start": "node .output/server/index.mjs",
     "start:generate": "npx serve .output/public"
   },
   "devDependencies": {
