@@ -86,13 +86,14 @@ jobs:
       - name: Test
         run: nr test
 
-  sonarqube:
+  sonarcloud:
     needs: [lint, typecheck, test]
+    name: SonarCloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Install pnpm
         uses: pnpm/action-setup@v2
       - name: Set node
@@ -103,8 +104,8 @@ jobs:
         run: npm i -g @antfu/ni
       - name: Install
         run: nci
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
