@@ -31,7 +31,7 @@ jobs:
 
       - name: Lint Fix
         run: nr lint:fix
-      
+
       - name: Lint
         run: nr lint
 
