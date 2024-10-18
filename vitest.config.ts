@@ -1,0 +1,32 @@
+import path from 'node:path'
+import Vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig } from 'vitest/config'
+
+export default defineConfig({
+  plugins: [
+    Vue(),
+    AutoImport({
+      imports: ['vue', 'vue-router'],
+    }),
+  ],
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  test: {
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.{vue,js,ts}'],
+      all: false,
+      reporter: ['html', 'clover', 'text', 'lcov'],
+    },
+    root: '.',
+    globals: true,
+    environment: 'happy-dom',
+    reporters: ['verbose', 'vitest-sonar-reporter'],
+    outputFile: 'test-report.xml',
+  },
+})

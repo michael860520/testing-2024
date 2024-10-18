@@ -1,0 +1,5 @@
+<testExecutions version="1">
+  <file path="tests/basic.test.ts">
+    <testCase name="tests - should works" duration="1" />
+  </file>
+</testExecutions>
