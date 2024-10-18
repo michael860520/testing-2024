@@ -38,7 +38,7 @@ export default defineNuxtConfig({
     '/': { redirect: '/shop' },
   },
   imports: {
-    dirs: ['utils', 'composables'],
+    dirs: ['./app/utils', './app/composables'],
   },
   app: {
     head: {
