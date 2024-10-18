@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import {isProductionURL} from '@/utils'
-
+import { isProductionURL } from '@/utils/index'
 </script>
 
 <template>
@@ -9,9 +8,7 @@ import {isProductionURL} from '@/utils'
       <img class="inline-block h-14 w-14" :src="`${isProductionURL()}nuxt.svg`">
       <span class="mt-2 text-green-500">Nuxt 3</span>
     </div>
-    <div
-      class="text-3xl bg-grayz-500xw mx-4 my-auto transform transition-all-500 hover:rotate-135"
-    />
+    <div class="text-3xl bg-grayz-500xw mx-4 my-auto transform transition-all-500 hover:rotate-135" />
     <div class="flex flex-col">
       <img class="inline-block h-14 w-14" :src="`${isProductionURL()}vite.png`">
 
