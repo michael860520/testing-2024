@@ -2,24 +2,24 @@
 changelog:
   exclude:
     authors:
-      - 'dependabot'
+      - dependabot
   categories:
-    - title: 'New'
+    - title: New
       labels:
         - 'type: feature'
-    - title: 'Improved'
+    - title: Improved
       labels:
         - 'type: docs'
         - 'type: style'
-    - title: 'Refactor'
+    - title: Refactor
       labels:
         - 'type: refactor'
-    - title: 'Fixed'
+    - title: Fixed
       labels:
         - 'type: bug(fix)'
-    - title: 'Documentation'
+    - title: Documentation
       labels:
         - 'type: docs'
-    - title: 'Other Changes'
+    - title: Other Changes
       labels:
         - '*'

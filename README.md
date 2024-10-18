@@ -1,7 +1,1 @@
-# testing-2024
-
-## dev
-
-```bash
-pnpm dev
-```
+# 2024-10-19
