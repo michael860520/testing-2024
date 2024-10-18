@@ -24,7 +24,7 @@ watch(
 
     if (typeof queryAsString === 'string')
       user.setNewName(queryAsString)
-  }
+  },
 )
 
 function clearSearch() {
@@ -69,8 +69,10 @@ function clearSearch() {
           {{ t('SearchTitle') }}
         </h3>
         <div class="flex justify-center items-center">
-          <input v-model="inputValue" type="text" class="border border-gray-300 p-2 rounded text-black"
-            :placeholder="t('TypeHere')">
+          <input
+            v-model="inputValue" type="text" class="border border-gray-300 p-2 rounded text-black"
+            :placeholder="t('TypeHere')"
+          >
           <NuxtLink :to="`/search?q=${inputValue}`" class="ml-2 bg-blue-500 text-white rounded px-4 py-2">
             {{ t('Search') }}
           </NuxtLink>

@@ -4,7 +4,7 @@ import { defineComponent } from 'vue'
 
 // 模擬 ShopIndex 組件
 const MockShopIndex = defineComponent({
-  template: '<div>Shop Index</div>'
+  template: '<div>Shop Index</div>',
 })
 
 describe('shopIndex', () => {
