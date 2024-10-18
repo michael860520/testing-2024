@@ -32,9 +32,6 @@ jobs:
       - name: Lint
         run: nr lint
 
-      - name: Run linter
-        run: pnpm run lint
-
   typecheck:
     runs-on: ubuntu-latest
     steps:
@@ -88,3 +85,26 @@ jobs:
 
       - name: Test
         run: nr test
+
+  sonarqube:
+    needs: [lint, typecheck, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+      - name: Set node
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - name: Setup
+        run: npm i -g @antfu/ni
+      - name: Install
+        run: nci
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

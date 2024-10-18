@@ -13,6 +13,7 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run",
+    "test:watch": "vitest",
     "sonar": "sonar-scanner"
   },
   "dependencies": {

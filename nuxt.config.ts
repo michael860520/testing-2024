@@ -33,4 +33,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { redirect: '/shop' },
   },
+  imports: {
+    dirs: ['composables/**', 'utils/**'],
+  },
 })

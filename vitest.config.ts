@@ -7,25 +7,21 @@ export default defineConfig({
   plugins: [
     Vue(),
     AutoImport({
-      imports: ['vue', 'vue-router'],
+      imports: ['vue', 'vue-router', 'pinia'],
     }),
   ],
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, './src'),
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './'),
     },
   },
   test: {
+    environment: 'happy-dom',
+    globals: true,
     coverage: {
       provider: 'v8',
-      include: ['src/**/*.{vue,js,ts}'],
-      all: false,
-      reporter: ['html', 'clover', 'text', 'lcov'],
+      reporter: ['text', 'json', 'html'],
     },
-    root: '.',
-    globals: true,
-    environment: 'happy-dom',
     reporters: ['verbose', 'vitest-sonar-reporter'],
     outputFile: 'test-report.xml',
   },
