@@ -1,0 +1,20 @@
+# 修复相关的 PR
+fix:
+  - head-branch: ['^fix/', 'hotfix/']
+  - title: ['^fix:', 'Fix']
+
+feat:
+  - head-branch: ['^feat/', 'feature/']
+  - title: ['^feat:', 'Feature']
+
+doc:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.md', 'docs/**/*']
+
+config:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.config.js', '**/*.config.ts', '.env*', '.github/**/*']
+
+test:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.test.js', '**/*.spec.js', 'tests/**/*']
