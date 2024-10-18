@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@nuxt/test-utils/module',
+    '@sentry/nuxt/module',
   ],
   colorMode: {
     classSuffix: '',
