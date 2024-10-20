@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened]  # 僅在創建 PR 時觸發
 
 jobs:
   lint:
