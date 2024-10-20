@@ -28,7 +28,7 @@ jobs:
       - name: Create a new tag and push it to remote
         run: |
           COMMIT_HASH=$(git rev-parse --short HEAD)  # 獲取當前提交的短哈希值
-          TAG_NAME="${{ env.TAG_NUMBER }}/${COMMIT_HASH}"  # 使用 {number}/{commit-hash} 格式創建標籤名稱
+          TAG_NAME="v${{ env.TAG_NUMBER }}/${COMMIT_HASH}"  # 使用 {number}/{commit-hash} 格式創建標籤名稱
           git tag $TAG_NAME                             # 創建標籤
           git push origin $TAG_NAME                     # 推送標籤到遠端。
         env:
