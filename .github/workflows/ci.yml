@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    types: [opened]  # 僅在創建 PR 時觸發
+    types: [opened, synchronize]  # 在創建或更新 PR 時觸發
 
 jobs:
   lint:
@@ -71,23 +71,29 @@ jobs:
   sonarcloud:
     needs: [lint, typecheck, test]
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis.
+          fetch-depth: 0 # 確保獲取完整的歷史以進行準確分析。
+      
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-      - name: Set node
-        uses: actions/setup-node@v4
+      
+      - name: Set node 
+        uses: actions/setup-node@v4 
         with:
-          node-version: 20
-          cache: 'pnpm'
-      - name: Setup
-        run: npm i -g @antfu/ni
-      - name: Install
-        run: nci 
-      - name: SonarCloud Scan 
-        uses: SonarSource/sonarcloud-github-action@master 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any.
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          node-version : 20 
+          cache : 'pnpm' 
+
+      - name : Setup 
+        run : npm i -g @antfu/ni 
+        
+      - name : Install 
+        run : nci 
+        
+      - name : SonarCloud Scan 
+        uses : SonarSource/sonarcloud-github-action@master 
+        env :
+          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }} # 用於獲取 PR 資訊。
+          SONAR_TOKEN : ${{ secrets.SONAR_TOKEN }}   # 用於身份驗證。
