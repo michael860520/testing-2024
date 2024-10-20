@@ -1,4 +1,3 @@
-# 修复相关的 PR
 fix:
   - head-branch: ['^fix/', 'hotfix/']
   - title: ['^fix:', 'Fix']
