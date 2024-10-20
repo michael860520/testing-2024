@@ -1,0 +1,40 @@
+name: CD
+
+on:
+  push:
+    tags:
+      - 'v*' # 當推送符合 v* 格式的標籤時觸發
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create a new tag and push it to remote
+        run: |
+          TAG_NAME="v$(date +'%Y%m%d%H%M%S')"  # 使用當前時間作為標籤名稱。
+          git tag $TAG_NAME                      # 創建標籤。
+          git push origin $TAG_NAME              # 推送標籤到遠端。
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub Token 進行身份驗證。
+
+  release:
+    needs: create-tag # 確保在創建標籤後執行此作業。
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4 
+        with:
+          fetch-depth: 0 
+
+      - name: Set node 
+        uses: actions/setup-node@v4 
+        with:
+          registry-url : https://registry.npmjs.org/
+          node-version : lts/* 
+
+      - run : npx changelogithub # 執行 changelogithub 來生成變更日誌。
+        env :
+          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub Token。
