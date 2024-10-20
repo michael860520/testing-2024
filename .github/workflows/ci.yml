@@ -14,25 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-
       - name: Set node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
-
       - name: Setup
         run: npm i -g @antfu/ni
-
       - name: Install
         run: nci
-
       - name: Lint Fix
         run: nr lint:fix
-
       - name: Lint
         run: nr lint
 
@@ -40,28 +34,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-
       - name: Set node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
-
       - name: Setup
         run: npm i -g @antfu/ni
-
       - name: Install
         run: nci
-
       - name: Typecheck
         run: nr typecheck
 
   test:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         node: [lts/*]
@@ -70,30 +58,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-
       - name: Set node ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-
       - name: Setup
         run: npm i -g @antfu/ni
-
       - name: Install
         run: nci
-
       - name: Build
         run: nr build
-
       - name: Test
         run: nr test
 
   sonarcloud:
     needs: [lint, typecheck, test]
-    name: SonarCloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -106,7 +87,6 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-
       - name: Setup
         run: npm i -g @antfu/ni
       - name: Install
@@ -116,3 +96,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  create-tag:
+    needs: [lint, typecheck, test, sonarcloud] # 確保在所有其他作業完成後執行此作業。
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create a new tag and push it to remote
+        run: |
+          TAG_NAME="v$(date +'%Y%m%d%H%M%S')"  # 使用當前時間作為標籤名稱。
+          git tag $TAG_NAME                      # 創建標籤。
+          git push origin $TAG_NAME              # 推送標籤到遠端。
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub Token 進行身份驗證。
