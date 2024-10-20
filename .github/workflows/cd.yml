@@ -2,8 +2,8 @@ name: CD
 
 on:
   push:
-    tags:
-      - 'v*' # 當推送符合 v* 格式的標籤時觸發
+    branches:
+      - main  # 當推送到 main 分支時觸發
 
 jobs:
   create-tag:
@@ -12,16 +12,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Get the current tag number
+        id: get_tag_number
+        run: |
+          # 獲取當前所有標籤
+          TAGS=$(git tag)
+          # 計算當前標籤數量
+          COUNT=$(echo "$TAGS" | grep -Eo '^[0-9]+' | sort -n | tail -n 1)
+          # 如果沒有標籤，則從 0 開始
+          if [ -z "$COUNT" ]; then
+            COUNT=0
+          fi
+          echo "TAG_NUMBER=$((COUNT + 1))" >> $GITHUB_ENV
+
       - name: Create a new tag and push it to remote
         run: |
-          TAG_NAME="v$(date +'%Y%m%d%H%M%S')"  # 使用當前時間作為標籤名稱。
-          git tag $TAG_NAME                      # 創建標籤。
-          git push origin $TAG_NAME              # 推送標籤到遠端。
+          COMMIT_HASH=$(git rev-parse --short HEAD)  # 獲取當前提交的短哈希值
+          TAG_NAME="${{ env.TAG_NUMBER }}/${COMMIT_HASH}"  # 使用 {number}/{commit-hash} 格式創建標籤名稱
+          git tag $TAG_NAME                             # 創建標籤
+          git push origin $TAG_NAME                     # 推送標籤到遠端。
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub Token 進行身份驗證。
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    # 使用 GitHub Token 進行身份驗證。
 
   release:
-    needs: create-tag # 確保在創建標籤後執行此作業。
+    needs: create-tag  # 確保在創建標籤後執行此作業。
     runs-on: ubuntu-latest
 
     steps:
@@ -35,6 +49,6 @@ jobs:
           registry-url : https://registry.npmjs.org/
           node-version : lts/* 
 
-      - run : npx changelogithub # 執行 changelogithub 來生成變更日誌。
+      - run : npx changelogithub  # 執行 changelogithub 來生成變更日誌。
         env :
           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub Token。
