@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: 'https://testing-2024.vercel.app',
+    cdnURL: 'https://testing-2024.vercel.app',
     head: {
       viewport: 'width=device-width,initial-scale=1',
       link: [
