@@ -38,9 +38,9 @@ export default defineNuxtConfig({
     },
   },
 
-  // routeRules: {
-  //   '/': { redirect: '/test' },
-  // },
+  routeRules: {
+    '/': { redirect: '/test-template-2024-ssr' },
+  },
 
   imports: {
     dirs: ['./app/utils', './app/composables'],
