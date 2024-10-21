@@ -3,6 +3,7 @@ import { appDescription } from './app'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
@@ -11,9 +12,11 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@vueuse/nuxt',
   ],
+
   colorMode: {
     classSuffix: '',
   },
+
   i18n: {
     langDir: 'locales',
     locales: [
@@ -34,13 +37,17 @@ export default defineNuxtConfig({
       redirectOn: 'root',
     },
   },
+
   routeRules: {
     '/': { redirect: '/shop' },
   },
+
   imports: {
     dirs: ['./app/utils', './app/composables'],
   },
+
   app: {
+    baseURL: 'https://testing-2024.vercel.app',
     head: {
       viewport: 'width=device-width,initial-scale=1',
       link: [
@@ -57,6 +64,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   nitro: {
     esbuild: {
       options: {
@@ -69,6 +77,7 @@ export default defineNuxtConfig({
     //   ignore: ['/hi'],
     // },
   },
+
   eslint: {
     config: {
       standalone: false,
@@ -78,4 +87,6 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+
+  compatibilityDate: '2024-10-21',
 })
