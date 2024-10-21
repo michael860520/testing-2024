@@ -8,7 +8,7 @@
     "generate": "nuxi generate",
     "prepare": "nuxi prepare",
     "start": "NUXT_APP_CDN_URL=https://testing-2024.vercel.app/ node .output/server/index.mjs",
-    "start:generate": "NUXT_APP_CDN_URL=https://testing-2024.vercel.app/ npx serve .output/public",
+    "start:generate": "npx serve .output/public",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "vue-tsc --noEmit",
