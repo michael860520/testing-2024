@@ -89,4 +89,8 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-10-21',
+
+  plugins: [
+    './plugins/vue-query.ts',
+  ],
 })
