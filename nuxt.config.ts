@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxt/eslint',
     '@vueuse/nuxt',
+    'shadcn-nuxt',
   ],
 
   colorMode: {
@@ -38,12 +39,12 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/': { redirect: '/test-template-2024-ssr' },
-  },
+  // routeRules: {
+  //   '/': { redirect: '/test-template-2024-ssr' },
+  // },
 
   imports: {
-    dirs: ['./app/utils', './app/composables'],
+    dirs: ['utils', 'composables', 'components'],
   },
 
   app: {
