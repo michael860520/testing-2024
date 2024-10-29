@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const searchValue = ref('')
+// const searchValue = ref('')
 
-const router = useRouter()
-function go() {
-  if (searchValue.value)
-    router.push({ path: '/test/search', query: { q: searchValue.value } })
-}
+// const router = useRouter()
+// function go() {
+//   if (searchValue.value)
+//     router.push({ path: '/test/search', query: { q: searchValue.value } })
+// }
 </script>
 
 <template>

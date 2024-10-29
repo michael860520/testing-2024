@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxt/eslint',
     '@vueuse/nuxt',
+    'shadcn-nuxt',
   ],
 
   colorMode: {
@@ -38,13 +39,13 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/': { redirect: '/test-template-2024-ssr' },
-  },
+  // routeRules: {
+  //   '/': { redirect: '/test-template-2024-ssr' },
+  // },
 
-  imports: {
-    dirs: ['./app/utils', './app/composables'],
-  },
+  // imports: {
+  //   dirs: ['utils', 'composables', 'components'],
+  // },
 
   app: {
     cdnURL: 'https://testing-2024.vercel.app',
@@ -89,4 +90,8 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-10-21',
+
+  plugins: [
+    './plugins/vue-query.ts',
+  ],
 })
