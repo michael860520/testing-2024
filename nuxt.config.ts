@@ -43,9 +43,9 @@ export default defineNuxtConfig({
   //   '/': { redirect: '/test-template-2024-ssr' },
   // },
 
-  imports: {
-    dirs: ['utils', 'composables', 'components'],
-  },
+  // imports: {
+  //   dirs: ['utils', 'composables', 'components'],
+  // },
 
   app: {
     cdnURL: 'https://testing-2024.vercel.app',
